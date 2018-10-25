@@ -1051,9 +1051,10 @@ static ZIPentry *zip_load_entry(ZIPinfo *info, const int zip64,
 
     BAIL_IF(!retval, PHYSFS_ERR_OUT_OF_MEMORY, NULL);
 
+	// disabled this check because it prevents CMake-generated ZIP files from being loaded
     /* It's okay to BAIL without freeing retval, because it's stored in the
        __PHYSFS_DirTree and will be freed later anyhow. */
-    BAIL_IF(retval->last_mod_time != 0, PHYSFS_ERR_CORRUPT, NULL); /* dupe? */
+//    BAIL_IF(retval->last_mod_time != 0, PHYSFS_ERR_CORRUPT, NULL); /* dupe? */
 
     /* Move the data we already read into place in the official object. */
     memcpy(((PHYSFS_uint8 *) retval) + sizeof (__PHYSFS_DirTreeEntry),
